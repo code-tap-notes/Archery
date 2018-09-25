@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>_Layout</title>
+    <title>@ViewBag.Title | Archery</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
@@ -28,7 +28,8 @@
                     </button>
                     @*<a class="navbar-brand" href="#">Home</a> <!--on peut utiliser la ligne ci-dessous--> *@
                     @Html.ActionLink("Accueil", "index", "home", null, new { @class = "navbar-brand" }) <!--on peut ajouter 4e et 5e parametre-->
-                    <!--5e est objets dynamique: ex  new{attr = "toto"}-->
+                    <!--5e est objets dynamique: ex  new{attr = "toto"} Utiliser autre facon--> 
+                   
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,7 +38,8 @@
 
                         @*<li><a href="~/a-propos">A propos</a></li>*@  <!--on peut utiliser la ligne ci-dessous-->
                         <li>
-                            @Html.ActionLink("A propos", "About", "home")
+                            @*@Html.ActionLink("A propos", "About", "home") *@ <!--on peut utiliser la ligne ci-dessous-->
+                            <a href="@Url.RouteUrl("AboutRoute")"> A propos</a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu Dropdown <span class="caret"></span></a>

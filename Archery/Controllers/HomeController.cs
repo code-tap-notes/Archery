@@ -12,6 +12,9 @@ namespace Archery.Controllers
         // GET: Home
         public ActionResult Index()
         {
+			ViewBag.Nom = "Toto";
+			ViewData["Nom"] = "Toto";
+			ViewData["Title"] = "Accueil";
             return View();
         }
 		[Route ("a-propos")]			//Pour marcher le chemin comme localhoste:(58482/a-propos
