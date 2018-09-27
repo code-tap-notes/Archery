@@ -16,6 +16,7 @@ namespace Archery.Controllers
 		{
 			return View();
 		}
+
 		[HttpPost]      //Recouperer l'information de Html.
 		public ActionResult Subscribe(Archer arche)
 		{
@@ -23,16 +24,20 @@ namespace Archery.Controllers
 			{
 
 			}
-
-
-			if (DateTime.Now > arche.BirthDate.AddYears(9))
-			{
-				return BadRequest(ModelState);
-			}
-
 			return View();
 		}
 
+
+		/*	if (DateTime.Now <= arche.BirthDate.AddYears(9))
+			{
+				//ViewBag.Erreur = "Vous n'avez pas plus que 9 ans";
+				//return View();  use other way
+				ModelState.AddModelError("Birthday", "Il fault avoir au moins 9 ans");
+			}
+
+			return View(); 
+		}
+		*/
 		private ActionResult BadRequest(ModelStateDictionary modelState)
 		{
 			throw new NotImplementedException();
