@@ -1,0 +1,18 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> Layout From</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">@RenderSection("SectionTitle", true)</div>
+    <div class="panel-body">
+        @RenderBody()
+    </div>
+</div>
+@section sectionScripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @RenderSection("sectionScript",false)
+}

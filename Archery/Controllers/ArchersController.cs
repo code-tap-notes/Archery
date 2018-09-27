@@ -1,46 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Archery.Models;
 using System.Web;
 using System.Web.Mvc;
-using Archery.Models;
 using System.Data;
-using System.Net;
+using Archery.Data;
 
 namespace Archery.Controllers
 {
 	public class ArchersController : Controller
 	{
+		ArcheryDbContext Db = new ArcheryDbContext();
 		// GET: Players
 		public ActionResult Subscribe()
 		{
 			return View();
 		}
 
-		[HttpPost]      //Recouperer l'information de Html.
-		public ActionResult Subscribe(Archer arche)
+		[HttpPost]
+		public ActionResult Subscribe(Archer archer)
 		{
+			/*if(DateTime.Now.AddYears(-9) <= archer.BirthDate)
+            {
+                //ViewBag.Erreur = "Date de naissance invalide";
+                //return View();
+                ModelState.AddModelError("BirthDate", "Date de naissance invalide");
+            }*/
+			
 			if (ModelState.IsValid)
 			{
-
-			}
-			return View();
-		}
-
-
-		/*	if (DateTime.Now <= arche.BirthDate.AddYears(9))
-			{
-				//ViewBag.Erreur = "Vous n'avez pas plus que 9 ans";
-				//return View();  use other way
-				ModelState.AddModelError("Birthday", "Il fault avoir au moins 9 ans");
+				Db.Archers.Add(archer);
+				Db.SaveChanges();
+				//ée maniere return RedirectToAction("index","home");
+				ViewBag.Data = "succcess";
 			}
 
-			return View(); 
-		}
-		*/
-		private ActionResult BadRequest(ModelStateDictionary modelState)
+			return View();        
+        }
+		protected override void Dispose(bool disposing)
 		{
-			throw new NotImplementedException();
+			base.Dispose(disposing);
+			if (!disposing)
+				this.Db.Dispose();
 		}
 	}
 }
