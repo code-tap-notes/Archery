@@ -9,9 +9,9 @@ using Archery.Data;
 
 namespace Archery.Controllers
 {
-	public class ArchersController : Controller
+	public class ArchersController : BaseController
 	{
-		ArcheryDbContext Db = new ArcheryDbContext();
+		private ArcheryDbContext Db = new ArcheryDbContext();
 		// GET: Players
 		public ActionResult Subscribe()
 		{
@@ -20,25 +20,25 @@ namespace Archery.Controllers
 
 		[HttpPost]
 		public ActionResult Subscribe(Archer archer)
-		{
-			/*if(DateTime.Now.AddYears(-9) <= archer.BirthDate)
-            {
-                //ViewBag.Erreur = "Date de naissance invalide";
-                //return View();
-                ModelState.AddModelError("BirthDate", "Date de naissance invalide");
-            }*/
-			
+		{						
 			if (ModelState.IsValid)
-			{
+			{			
+				{				
 				Db.Archers.Add(archer);
-				Db.SaveChanges();
-				//ée maniere return RedirectToAction("index","home");
-				ViewBag.Data = "succcess";
+				Display("Archer a ete enregistré");
+					//Db.SaveChanges();
+					
+					//TempData["Message"]=TempData["Success"];
+				RedirectToAction("index", "home");  //  retourer au home page, sans message
+					
+				}	
+				//ViewBag.Message = "succcess";
 			}
 
-			return View();        
+			return View();      
         }
-		protected override void Dispose(bool disposing)
+		
+		protected override void Dispose(bool disposing) 
 		{
 			base.Dispose(disposing);
 			if (!disposing)

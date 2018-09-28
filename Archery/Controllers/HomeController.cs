@@ -7,7 +7,7 @@ using Archery.Models;
 
 namespace Archery.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         // GET: Home
         public ActionResult Index()
@@ -15,8 +15,11 @@ namespace Archery.Controllers
 			ViewBag.Nom = "Toto";
 			ViewData["Nom"] = "Toto";
 			ViewData["Title"] = "Accueil";
+			TempData["Erreur"] = "Il y a un Erreur";
+			TempData["Success"] = "Action Success";
             return View();
         }
+		
 		[Route ("a-propos")]			//Pour marcher le chemin comme localhoste:(58482/a-propos
 		public ActionResult About()
 		{
