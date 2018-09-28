@@ -156,6 +156,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\Age.cs" />
+    <Compile Include="Validators\CrypterPasword.cs" />
     <Compile Include="Validators\Message.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Archers\Subscribe.cshtml" />
     <Content Include="Views\Shared\_LayoutForm.cshtml" />
+    <Content Include="Views\Shared\_PartialDisplay.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

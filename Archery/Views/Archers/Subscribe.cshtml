@@ -11,6 +11,7 @@
 @*<form role="form" methode =" "post">    </form> *@ <!--peut utiliser methode using suivant-->
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
     @*<div class="Text-danger">
         @Html.ValidationSummary()  khong su dung div vi ko cos loi van hien ra khung*@
 

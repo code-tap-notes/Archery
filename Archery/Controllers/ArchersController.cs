@@ -19,7 +19,8 @@ namespace Archery.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Subscribe(Archer archer)
+		[ValidateAntiForgeryToken]
+		public ActionResult Subscribe([Bind(Exclude ="ID")]Archer archer)
 		{						
 			if (ModelState.IsValid)
 			{			
