@@ -21,10 +21,12 @@ namespace Archery.Controllers
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Subscribe([Bind(Exclude ="ID")]Archer archer)
-		{						
+		{
+            archer.Password = Crypter.GetMD5Password(archer.Password);
 			if (ModelState.IsValid)
 			{			
-				{				
+				{	
+                
 				Db.Archers.Add(archer);
 				Display("Archer a ete enregistré");
 					//Db.SaveChanges();

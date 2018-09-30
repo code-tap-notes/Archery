@@ -142,6 +142,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ArchersController.cs" />
     <Compile Include="Data\ArcheryDbContext.cs" />
+    <Compile Include="Data\Crypter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -156,7 +157,6 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\Age.cs" />
-    <Compile Include="Validators\CrypterPasword.cs" />
     <Compile Include="Validators\Message.cs" />
   </ItemGroup>
   <ItemGroup>
