@@ -7,7 +7,6 @@
     <h2>New User</h2>
 }
 
-
 @*<form role="form" methode =" "post">    </form> *@ <!--peut utiliser methode using suivant-->
 @using (Html.BeginForm())
 {
@@ -53,7 +52,6 @@
         @Html.ValidationMessageFor(x => x.BirthDate, null, new { @class = " text-danger" })
         @* @ViewBag.Erreur  : Si declarer ViewBag.Erreur dans controleur, il fault ajouer cette ligne *@
 
-
     </div>
     <div class="form-group">
 
@@ -67,8 +65,6 @@
         </label>
     </div>
     <button type="submit" class="btn btn-default"  @Html.ActionLink("subscribe","archers")>OK</button>
-
-
 }
 
 
