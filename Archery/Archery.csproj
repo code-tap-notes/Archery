@@ -158,9 +158,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810011040330_Init.cs" />
-    <Compile Include="Migrations\201810011040330_Init.Designer.cs">
-      <DependentUpon>201810011040330_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201810020651245_Init.cs" />
+    <Compile Include="Migrations\201810020651245_Init.Designer.cs">
+      <DependentUpon>201810020651245_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
@@ -201,8 +201,8 @@
     <Folder Include="Areas\BackOffice\Models\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810011040330_Init.resx">
-      <DependentUpon>201810011040330_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810020651245_Init.resx">
+      <DependentUpon>201810020651245_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
