@@ -6,7 +6,9 @@
     <title>@ViewBag.Title - BackOffice</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -22,12 +24,36 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav"></ul>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Armes <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("create", "weapons")">Ajouter</a></li>
+                            <li><a href="@Url.Action("index", "weapons")">Lister</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav"></ul>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tournement<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("create", "tournaments")">Ajouter</a></li>
+                            <li><a href="@Url.Action("index", "tournaments")">Lister</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
     </div>
 
     <div class="container body-content">
         @RenderBody()
+        
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
@@ -36,9 +62,8 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-
-    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.globalize.min.js"></script>   
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    @RenderSection("sectionScripts", false)
+    @RenderSection("SectionScripts", false)
 </body>
 </html>

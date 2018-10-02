@@ -11,7 +11,7 @@ namespace Archery.Models
         [Required(ErrorMessage = "Le champ {0} est obligatoire.")]
         [StringLength(15)]
         [Display(Name="Numéro de License", Prompt ="Numéro")]
-        [RegularExpression(@"^([0]{1}"+ @"([0-9]{6})" + @"([A-Z]{1})", ErrorMessage = "Le numéro de licence doit commencer par 0 et  6 chiffres et terminer par une lettre majuscule")]
+        //[RegularExpression(@"^(?:\+33\s|0)[1-9](?:\s\d{2}){4}$", ErrorMessage = "Le numéro commencer par 0,et 10 chiffres")]
         public string LicenseNumber{get; set;}
 	}
 }

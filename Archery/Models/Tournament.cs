@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace Archery.Models
 {
@@ -21,11 +22,13 @@ namespace Archery.Models
         [DataType(DataType.MultilineText)]
         public string Location { get; set; }
 
-            [Required]
-            [Display(Name = "Début")]
-            public DateTime StartDate { get; set; }
+        [Required]
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Début")]
+        public DateTime StartDate { get; set; }
 
             [Required]
+            [DataType(DataType.DateTime)]
             [Display(Name = "Fin")]
             public DateTime EndDate { get; set; }
 
@@ -36,10 +39,18 @@ namespace Archery.Models
             [Display(Name = "Prix")]
             public decimal? Price { get; set; }
 
+       
+            [Display(Name = "Description")]
+            [StringLength(250)]
+            [DataType(DataType.MultilineText)]
+            [AllowHtml]
+            public string Description { get; set; }
+
             [Display(Name = "Armes")]
             public ICollection<Weapon> Weapons { get; set; }
 
             [Display(Name = "Tireur")]
             public ICollection<Shooter> Shooters { get; set; }     
+
     }
 }
