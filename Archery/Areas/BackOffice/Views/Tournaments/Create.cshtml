@@ -64,7 +64,8 @@
     <div class="form-group">
         <label class = "control-label col-md-2" > Armes </label>
         <div class="col-md-10">
-            @Html.ListBox("ArmesID", (MultiSelectList)ViewBag.Weapon ,new { @class = "form-control" })            
+           
+            @Html.ListBox("WeaponsID", (MultiSelectList)ViewBag.Weapons, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">

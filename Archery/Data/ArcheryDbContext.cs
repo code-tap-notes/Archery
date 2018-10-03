@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using Archery.Models;
+using System.Diagnostics;
 
 namespace Archery.Data
 {
@@ -11,11 +12,13 @@ namespace Archery.Data
 	{
 		public ArcheryDbContext() : base("Archery")  //Nom Data Base declarer dans connectionstring
 		{
+            this.Database.Log=s => Debug.Write(s);
 		}
 
 		public DbSet<Administrator> Administrators {get; set;} 
 		public DbSet<Archer> Archers {get; set;}        
         public DbSet<Tournament> Tournaments { get; set; }
+        //public DbSet<WeaponTournament> WeaponTournaments { get; set; } //Besoin ou pas??
         public DbSet<Weapon> Weapons { get; set; }
         public DbSet<Shooter> Shooters { get; set; }
     }
