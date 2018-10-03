@@ -29,17 +29,26 @@ namespace Archery.Areas.BackOffice.Controllers
                 var admin = db.Administrators.SingleOrDefault(
                     x => x.Mail == model.Mail && x.Password == hash);
                
+               
             if (admin==null)
                 {
                     ModelState.AddModelError("Mail", "Login/mot de pas invalide");
                     return View();
+                    
                 }
                 else
-                { 
+                {
+                    Session["ADMINISTRATOR"] = admin;
                 return RedirectToAction("index","Dashboard",new { area = "BackOffice"});
                 }
             }
             return View();
         }
+        public ActionResult LogOut()
+        {
+            
+             ViewBag.Data = model.Mail;
+        }
+
     }
 }

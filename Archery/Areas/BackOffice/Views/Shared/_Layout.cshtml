@@ -42,22 +42,13 @@
                             <li><a href="@Url.Action("index", "tournaments")">Lister</a></li>
                         </ul>
                     </li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Archers<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("index", "Shooters")">Lister</a></li>
-                            @Html.ActionLink("Archery","Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                        </ul>
-                    </li>
-                </ul>
+                </ul>               
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shooters<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("create", "Shooters")">Ajouter</a></li>
-                            <li><a href="@Url.Action("index", "Shooters")">Lister</a></li>
+                            
+                            <li style=" float:right; color:white">Bonjour @ViewBag.Data</></li>
                         </ul>
                     </li>
                 </ul>
