@@ -46,10 +46,11 @@
                     </li>
                 </ul>               
                 <ul class="nav navbar-right" style="color:white">
-                    
+                    <li>
                         Bonjour @admin.FirstName @admin.LastName
-                        <a href="@Url.Action("logout", "authentication")" class="btn btn-info"><i class="glyphicon glyphicon-log-out"></i></a> LOGOUT
-                                                                       
+
+                        <a id="logout" href="@Url.Action("logout", "authentication")" class="btn btn-info"><i class="glyphicon glyphicon-log-out"></i></a>
+                    </li>                                                   
                 </ul>
             </div>
             <div class="navbar-collapse collapse">
@@ -73,5 +74,14 @@
     <script src="~/Scripts/jquery.validate.globalize.min.js"></script>   
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     @RenderSection("SectionScripts", false)
+    <script>
+        const btn = document.querySelector('#logout');
+        btn.addEventListener('click', ev => {
+            if (confirm("Voulez-voos vous déconnecter?") === false) {
+                ev.preventDefault();
+            }
+        });
+    </script>
+
 </body>
 </html>

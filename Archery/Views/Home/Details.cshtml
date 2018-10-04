@@ -64,15 +64,15 @@
             @Html.Raw(Model.Description)
         </dd>
         <dt>
-           Armes
+            Armes
         </dt>
         <dd>
-           <table class="table table-striped">
-               @foreach (var item in Model.Weapons)
-               {
-                   <tr><td>@item.Name</td></tr>
-               }
-           </table>
+            <table class="table table-striped">
+                @foreach (var item in Model.Weapons)
+                {
+                    <tr><td>@item.Name</td></tr>
+                }
+            </table>
         </dd>
         <dd>
             <div class="row">

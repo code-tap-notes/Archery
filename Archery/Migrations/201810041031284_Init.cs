@@ -47,9 +47,9 @@ namespace Archery.Migrations
                         Departure = c.DateTime(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Archers", t => t.ArcherID, cascadeDelete: true)
-                .ForeignKey("dbo.Tournaments", t => t.TournamentID, cascadeDelete: true)
-                .ForeignKey("dbo.Weapons", t => t.WeaponID, cascadeDelete: true)
+                .ForeignKey("dbo.Archers", t => t.ArcherID, cascadeDelete: false)
+                .ForeignKey("dbo.Tournaments", t => t.TournamentID, cascadeDelete: false)
+                .ForeignKey("dbo.Weapons", t => t.WeaponID, cascadeDelete: false)
                 .Index(t => t.TournamentID)
                 .Index(t => t.WeaponID)
                 .Index(t => t.ArcherID);
@@ -70,6 +70,20 @@ namespace Archery.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
+                "dbo.TournamentPictures",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 150),
+                        ContentType = c.String(nullable: false, maxLength: 150),
+                        Content = c.Binary(nullable: false),
+                        TournamentID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Tournaments", t => t.TournamentID, cascadeDelete: false)
+                .Index(t => t.TournamentID);
+            
+            CreateTable(
                 "dbo.Weapons",
                 c => new
                     {
@@ -86,8 +100,8 @@ namespace Archery.Migrations
                         Tournament_ID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => new { t.Weapon_ID, t.Tournament_ID })
-                .ForeignKey("dbo.Weapons", t => t.Weapon_ID, cascadeDelete: true)
-                .ForeignKey("dbo.Tournaments", t => t.Tournament_ID, cascadeDelete: true)
+                .ForeignKey("dbo.Weapons", t => t.Weapon_ID, cascadeDelete: false)
+                .ForeignKey("dbo.Tournaments", t => t.Tournament_ID, cascadeDelete: false)
                 .Index(t => t.Weapon_ID)
                 .Index(t => t.Tournament_ID);
             
@@ -99,9 +113,11 @@ namespace Archery.Migrations
             DropForeignKey("dbo.WeaponTournaments", "Tournament_ID", "dbo.Tournaments");
             DropForeignKey("dbo.WeaponTournaments", "Weapon_ID", "dbo.Weapons");
             DropForeignKey("dbo.Shooters", "TournamentID", "dbo.Tournaments");
+            DropForeignKey("dbo.TournamentPictures", "TournamentID", "dbo.Tournaments");
             DropForeignKey("dbo.Shooters", "ArcherID", "dbo.Archers");
             DropIndex("dbo.WeaponTournaments", new[] { "Tournament_ID" });
             DropIndex("dbo.WeaponTournaments", new[] { "Weapon_ID" });
+            DropIndex("dbo.TournamentPictures", new[] { "TournamentID" });
             DropIndex("dbo.Shooters", new[] { "ArcherID" });
             DropIndex("dbo.Shooters", new[] { "WeaponID" });
             DropIndex("dbo.Shooters", new[] { "TournamentID" });
@@ -109,6 +125,7 @@ namespace Archery.Migrations
             DropIndex("dbo.Administrators", new[] { "Mail" });
             DropTable("dbo.WeaponTournaments");
             DropTable("dbo.Weapons");
+            DropTable("dbo.TournamentPictures");
             DropTable("dbo.Tournaments");
             DropTable("dbo.Shooters");
             DropTable("dbo.Archers");

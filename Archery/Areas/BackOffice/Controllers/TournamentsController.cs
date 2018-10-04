@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Archery.Data;
 using Archery.Models;
+using System.IO;
 
 namespace Archery.Areas.BackOffice.Controllers
 {
@@ -28,7 +29,7 @@ namespace Archery.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }   //"Weapon est nom de variable ajouter dans Create
-            Tournament tournament = db.Tournaments.Include("Weapons").SingleOrDefault(x => x.ID == id);
+            Tournament tournament = db.Tournaments.Include("Pictures").Include("Weapons").SingleOrDefault(x => x.ID == id);
             
             if (tournament == null)
             {
@@ -36,8 +37,29 @@ namespace Archery.Areas.BackOffice.Controllers
             }
             return View(tournament);
         }
-                    
-           
+
+        public ActionResult AddPicture(HttpPostedFileBase picture,int id)
+        {
+            if (picture?.ContentLength > 0)
+            {
+                var tp = new TournamentPicture();
+                tp.ContentType = picture.ContentType;
+                tp.Name = picture.FileName;
+                tp.TournamentID = id;
+                using (var reader = new BinaryReader(picture.InputStream))
+                {
+                    tp.Content = reader.ReadBytes(picture.ContentLength);
+                }
+                db.TournamentPictures.Add(tp);
+                db.SaveChanges();               
+                return RedirectToAction("edit", "tournaments", new { id = id });
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+        
+                          
+
+
         // GET: BackOffice/Tournaments/Create
         public ActionResult Create()
         {
@@ -80,7 +102,7 @@ namespace Archery.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tournament tournament = db.Tournaments.Include("Weapons").SingleOrDefault(x => x.ID == id);
+            Tournament tournament = db.Tournaments.Include("Pictures").Include("Weapons").SingleOrDefault(x => x.ID == id);
             if (tournament == null)
             {
                 return HttpNotFound();
@@ -101,7 +123,7 @@ namespace Archery.Areas.BackOffice.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(tournament).State = EntityState.Modified;                
-                db.Tournaments.Include("Weapons").SingleOrDefault(x => x.ID == tournament.ID); //recheche tournoi sans la table de lieson
+                db.Tournaments.Include("Pictures").Include("Weapons").SingleOrDefault(x => x.ID == tournament.ID); //recheche tournoi sans la table de lieson
                 if (weaponsID != null)
                 {
                     tournament.Weapons = db.Weapons.Where(x => weaponsID.Contains(x.ID)).ToList();
@@ -140,7 +162,7 @@ namespace Archery.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Tournament tournament = db.Tournaments.Include("Weapons").SingleOrDefault(x => x.ID == id);
+            Tournament tournament = db.Tournaments.Include("Pictures").Include("Weapons").SingleOrDefault(x => x.ID == id);
             tournament.Weapons.Clear();                             //Delete weapon
             var shooters = db.Shooters.Where(x => x.TournamentID == id);
             foreach (var item in shooters)

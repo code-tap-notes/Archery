@@ -50,7 +50,9 @@ namespace Archery.Models
             public ICollection<Weapon> Weapons { get; set; }
 
             [Display(Name = "Tireur")]
-            public ICollection<Shooter> Shooters { get; set; }     
-
+            public ICollection<Shooter> Shooters { get; set; }  
+        
+            [Display(Name = "Image")] //Relation 1 plusieurs
+            public ICollection<TournamentPicture> Pictures  { get; set; } 
     }
 }

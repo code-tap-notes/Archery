@@ -138,11 +138,6 @@
     <Content Include="Areas\BackOffice\Views\Tournaments\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Tournaments\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Tournaments\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Shooters\Create.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Shooters\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Shooters\Details.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Shooters\Edit.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Shooters\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Authentication\Login.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
@@ -323,7 +318,6 @@
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AuthenticationController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DashboardController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\ShootersController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\TournamentsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\WeaponsController.cs" />
     <Compile Include="Areas\BackOffice\Models\AuthenticationLoginViewModels.cs" />
@@ -336,9 +330,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810021316512_Init.cs" />
-    <Compile Include="Migrations\201810021316512_Init.Designer.cs">
-      <DependentUpon>201810021316512_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201810041031284_Init.cs" />
+    <Compile Include="Migrations\201810041031284_Init.Designer.cs">
+      <DependentUpon>201810041031284_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
@@ -347,6 +341,7 @@
     <Compile Include="Models\Archer.cs" />
     <Compile Include="Models\Shooter.cs" />
     <Compile Include="Models\Tournament.cs" />
+    <Compile Include="Models\TournamentPicture.cs" />
     <Compile Include="Models\WeaponTournament.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Weapon.cs" />
@@ -376,6 +371,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Home\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -387,8 +383,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810021316512_Init.resx">
-      <DependentUpon>201810021316512_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810041031284_Init.resx">
+      <DependentUpon>201810041031284_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
