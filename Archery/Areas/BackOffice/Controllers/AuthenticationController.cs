@@ -28,9 +28,10 @@ namespace Archery.Areas.BackOffice.Controllers
             { var hash = model.Password.HashMD5();
                 var admin = db.Administrators.SingleOrDefault(
                     x => x.Mail == model.Mail && x.Password == hash);
-               
-               
-            if (admin==null)
+                ViewBag.Data = model.Mail;
+
+
+                if (admin==null)
                 {
                     ModelState.AddModelError("Mail", "Login/mot de pas invalide");
                     return View();
@@ -44,11 +45,13 @@ namespace Archery.Areas.BackOffice.Controllers
             }
             return View();
         }
-        public ActionResult LogOut()
+        
+        public ActionResult Logout()
         {
-            
-             ViewBag.Data = model.Mail;
-        }
 
+            //Session["ADMINISTRATOR"] = null;
+            Session.Remove("ADMINISTRATOR");
+            return RedirectToAction("index","home",new { area = ""});
+        }
     }
 }
