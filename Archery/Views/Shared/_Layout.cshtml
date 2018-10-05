@@ -1,7 +1,8 @@
-﻿
+﻿@{
+    var archer = Session["ARCHER"] as Archery.Models.Archer;
+}
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -54,25 +55,30 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-left">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
+                    @if (archer == null)
+                    {
+                        <form class="navbar-form navbar-right" method="post" action="@Url.Action("login", "archers")">
+                            <div class="form-group">
+                                <input type="text" name="mail" class="form-control" placeholder="Login">
+                                <input type="password" name="password" class="form-control" placeholder="Mot de passe" />
+                            </div>
+                            <button type="submit" class="btn btn-info">OK</button>
+                        </form>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="@Url.Action("subscribe", "archers")">Inscription</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>Bonjour @archer.FirstName</li>
+                            <li><a href="@Url.Action("logout", "archers")"><i class="glyphicon glyphicon-log-out"></i></a></li>
+                        </ul>
+                    }
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="@Url.Action("subscribe","archers")">INSCRIPTION</a> </li>
                         <li><a href="@Url.Action("index","Dashboard",new {area="BackOffice" })">BACK OFFICE</a> </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -93,14 +99,14 @@
     @*pour example d'utiliser creer une Section au lieu de mettre 2 ligne script ici dans layout, remettre dans Subscribe*@
     @*<script>
 
-                $(function () {
-                    $("#logout").click(function () {
-                        if (confirm("Voulez-vous vous déconnecter?") == false) {
-                            return false
-                        }
-                    });
+            $(function () {
+                $("#logout").click(function () {
+                    if (confirm("Voulez-vous vous déconnecter?") == false) {
+                        return false
+                    }
                 });
-            </script>  *@
+            });
+        </script>  *@
 
 </body>
 </html>

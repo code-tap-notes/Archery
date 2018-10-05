@@ -8,8 +8,10 @@ namespace Archery.Filter
 {   [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class AuthenticationAttribute : ActionFilterAttribute
     {
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+
             if (filterContext.HttpContext.Session["ADMINISTRATOR"] == null)
             {
 

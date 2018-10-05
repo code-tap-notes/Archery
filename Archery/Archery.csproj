@@ -138,7 +138,6 @@
     <Content Include="Areas\BackOffice\Views\Tournaments\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Tournaments\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Tournaments\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Authentication\Login.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
@@ -324,19 +323,24 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ArchersController.cs" />
+    <Compile Include="Controllers\ShootersController.cs" />
     <Compile Include="Data\ArcheryDbContext.cs" />
     <Compile Include="Data\Crypter.cs" />
-    <Compile Include="Filter\AuthenticationAttribute.cs" />
+    <Compile Include="Filters\ArcherAuthenticationAttribute.cs" />
+    <Compile Include="Filters\AuthenticationAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ArcheryHelpers.cs" />
     <Compile Include="Migrations\201810041031284_Init.cs" />
     <Compile Include="Migrations\201810041031284_Init.Designer.cs">
       <DependentUpon>201810041031284_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
+    <Compile Include="Models\AuthenticationLoginViewModel.cs" />
     <Compile Include="Models\BaseModels.cs" />
+    <Compile Include="Models\HomeIndexViewModel.cs" />
     <Compile Include="Models\Info.cs" />
     <Compile Include="Models\Archer.cs" />
     <Compile Include="Models\Shooter.cs" />
@@ -371,7 +375,15 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
-    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\DetailTournament.cshtml" />
+    <Content Include="Views\Shooters\Create.cshtml" />
+    <Content Include="Views\Shooters\Delete.cshtml" />
+    <Content Include="Views\Shooters\Details.cshtml" />
+    <Content Include="Views\Shooters\Edit.cshtml" />
+    <Content Include="Views\Shooters\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Authentication\Login.cshtml" />
+    <Content Include="Views\Archers\SubsribeTournament.cshtml" />
+    <Content Include="Views\Archers\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

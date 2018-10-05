@@ -156,6 +156,15 @@ namespace Archery.Areas.BackOffice.Controllers
             }
             return View(tournament);
         }
+        public ActionResult DeletePicture(int? id)
+        { if (id == null) return HttpNotFound();
+            var picture = db.TournamentPictures.Find(id);
+            if (picture == null)
+                return HttpNotFound();
+            db.TournamentPictures.Remove(picture);
+            //db.SaveChanges();
+            return Json(picture); //envoyer picture à Json 
+        }
 
         // POST: BackOffice/Tournaments/Delete/5
         [HttpPost, ActionName("Delete")]

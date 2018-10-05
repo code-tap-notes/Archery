@@ -8,6 +8,9 @@ using System.Data;
 using Archery.Data;
 using Archery.Tools;
 using Archery.Validators;
+using Archery.Areas.BackOffice.Models;
+using Archery.Filters;
+
 
 namespace Archery.Controllers
 {
@@ -46,6 +49,8 @@ namespace Archery.Controllers
 
 			return View();      
         }
+
+       
 		
 		protected override void Dispose(bool disposing) 
 		{
@@ -53,5 +58,51 @@ namespace Archery.Controllers
 			if (!disposing)
 				this.Db.Dispose();
 		}
-	}
+        // GET: BackOffice/Authentication
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]        
+        public ActionResult Login(AuthenticationLoginViewModels model)
+        {
+            var hash = model.Password.HashMD5();
+            var archer = db.Archers.SingleOrDefault(x => x.Mail == model.Mail && x.Password == hash);
+            if (archer == null)
+            {
+                Display("Login/mot de passe incorrect", MessageType.Erreur);
+                return View();
+            }
+            else
+            {
+                Session["ARCHER"] = archer;
+                if (TempData["REDIRECT"] != null)
+                    return Redirect(TempData["REDIRECT"].ToString());
+                else
+                    return RedirectToAction("index", "home");
+            }
+           
+        }
+        public ActionResult SubsribeTournament(int id)
+        {
+            if (id == null)
+            {
+                Display("",MessageType.Erreur);
+                return View();
+            }
+            else
+            {
+
+            }
+            return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Remove("ARCHER");
+            return RedirectToAction("index", "home");
+        }
+    }
 }

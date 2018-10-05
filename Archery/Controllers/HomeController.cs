@@ -9,29 +9,32 @@ using Archery.Models;
 namespace Archery.Controllers
 {
     public class HomeController : BaseController
-    {
-        // GET: Home
+    {// GET: Home
         public ActionResult Index()
         {
-			
-            return View(db.Tournaments.OrderBy(x=>x.StartDate).ToList());
-           
+            ViewData["Title"] = "Accueil";
+            HomeIndexViewModel model = new HomeIndexViewModel();
+            model.Tournaments = db.Tournaments.Include("Weapons")
+                                              .Include("Pictures")
+                                              .Where(x => x.StartDate >= DateTime.Now)
+                                              .OrderBy(x => x.StartDate)
+                                              .Take(20);
+            return View(model);
         }
 
-        public ActionResult Details(int? id)
+
+        public ActionResult DetailTournament(int? id)
         {
             if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }   //"Weapon est nom de variable ajouter dans Create
-            Tournament tournament = db.Tournaments.Include("Pictures").Include("Weapons").SingleOrDefault(x => x.ID == id);
-
-            if (tournament == null)
-            {
                 return HttpNotFound();
-            }
-            return View(tournament);
+            var model = db.Tournaments.Include("Weapons")
+                                             .Include("Pictures")
+                                             .SingleOrDefault(x => x.ID == id);
+            if (model == null)
+                return HttpNotFound();
+            return View(model);
         }
+
 
         [Route ("a-propos")]			//Pour marcher le chemin comme localhoste:(58482/a-propos
 		public ActionResult About()

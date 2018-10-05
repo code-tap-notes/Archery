@@ -17,13 +17,23 @@ namespace Archery
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { Controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 			routes.MapRoute(                               //Pour marcher le chemin comme localhoste:(58482/a-propos
 				name: "AboutRoute",
 				url: "a-propos",
 				defaults: new {Controller= "Home",action ="About"}
 		    );
+            routes.MapRoute(
+               name: "DetailTournament",
+               url: "{name}/{id}",
+               defaults: new { Controller = "Home", action = "DetailTournament" }
+           );
+            routes.MapRoute(
+               name: "CreateShooter",
+               url: "{name}/{id}",
+               defaults: new { Controller = "Shooter", action = "Create" }
+           );
 
         }
     }
